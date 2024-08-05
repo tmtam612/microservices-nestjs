@@ -1,12 +1,22 @@
 ## STEP BY STEP
-npm i -g @nestjs/cli
-nest new microservices
-nest g library common
-nest g module config -p common
-nest g module database -p common
-nest g app projects
-nest g app users
-nest g resource projects
+```bash
+$ npm i -g @nestjs/cli
+
+$ nest new microservices
+
+$ nest g library common
+
+$ nest g module config -p common
+
+$ nest g module database -p common
+
+$ nest g app projects
+
+$ nest g app users
+
+$ nest g resource projects
+```
+
 ## Installation
 
 ```bash
