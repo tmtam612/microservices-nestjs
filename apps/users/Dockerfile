@@ -12,7 +12,7 @@ RUN npm install
 COPY apps/users apps/users
 COPY libs libs
 
-RUN cd apps/auth && npm install
+RUN cd apps/users && npm install
 
 RUN npm run build users
 
