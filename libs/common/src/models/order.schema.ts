@@ -1,11 +1,11 @@
 import { AbstractDocument } from "@app/common/database/abstract.schema";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 @Schema({versionKey: false})
-export class ProjectDocument extends AbstractDocument {
+export class OrderDocument extends AbstractDocument {
     @Prop()
-    name: String;
-    
+    userID: String;
+  
     @Prop()
-    resourceNumber: Number;
+    projectID: String;
 }
-export const ProjectSchema = SchemaFactory.createForClass(ProjectDocument)
+export const OrderSchema = SchemaFactory.createForClass(OrderDocument)

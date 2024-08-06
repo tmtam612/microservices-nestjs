@@ -1,0 +1,33 @@
+services:
+  users:
+    build: 
+      context: .
+      dockerfile: ./apps/users/Dockerfile
+      target: development
+    command: npm run start:dev users
+    ports:
+      - '3002:3002'
+    volumes:
+      - .:/usr/src/app
+  projects:
+    build: 
+      context: .
+      dockerfile: ./apps/projects/Dockerfile
+      target: development
+    command: npm run start:dev projects
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/usr/src/app
+  orders:
+    build: 
+      context: .
+      dockerfile: ./apps/orders/Dockerfile
+      target: development
+    command: npm run start:dev orders
+    ports:
+      - '3004:3004'
+    volumes:
+      - .:/usr/src/app
+  mongo:
+    image: mongo

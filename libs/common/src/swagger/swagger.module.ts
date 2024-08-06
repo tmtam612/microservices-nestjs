@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import { DocumentBuilder } from '@nestjs/swagger';
 
-@Module({})
-export class SwaggerModule {}
+export const ConfigSwagger = (title: string, type: string, version: string) => {
+    return new DocumentBuilder()
+    .setTitle(title)
+    .setDescription(`The ${type} API description`)
+    .setVersion(version)
+    .build();
+}

@@ -1,14 +1,14 @@
 import { IsString } from "class-validator";
 import { Type } from 'class-transformer';
 import { ApiProperty } from "@nestjs/swagger";
-export class CreateProjectDto {
+export class CreateOrderDto {
     @IsString()
     @Type(() => String)
     @ApiProperty({ example: 'Example' })
-    name: String;
+    userID: String;
 
     @IsString()
-    @Type(() => Number)
-    @ApiProperty({ example: '1' })
-    resourceNumber: Number;
+    @Type(() => String)
+    @ApiProperty({ example: 'Example' })
+    projectID: String;
 }

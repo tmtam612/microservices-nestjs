@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UsersRepository } from './users.repository';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class UsersService {
+  constructor(
+    private readonly usersRepository: UsersRepository,
+    @Inject('orders') private readonly ordersService: ClientProxy,
+  ) {}
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return this.usersRepository.create({
+      ...createUserDto,
+    });
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.usersRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(_id: string) {
+    const test = this.ordersService.send('find_orders_by_userid', {
+      _id,
+    });
+    console.log(test);
+    return this.usersRepository.find({ _id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(_id: string, updateUserDto: UpdateUserDto) {
+    return this.usersRepository.findOneAndUpdate(
+      { _id },
+      { $set: updateUserDto },
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(_id: string) {
+    return this.usersRepository.findOneAndDelete({ _id });
   }
 }

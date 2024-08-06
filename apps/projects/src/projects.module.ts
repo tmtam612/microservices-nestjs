@@ -9,6 +9,7 @@ import {
 } from '@app/common/models/project.schema';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+
 @Module({
   imports: [
     DatabaseModule,
