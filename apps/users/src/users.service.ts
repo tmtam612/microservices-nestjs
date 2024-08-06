@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './users.repository';
 import { ClientProxy } from '@nestjs/microservices';
+import { map } from 'rxjs';
 
 @Injectable()
 export class UsersService {
@@ -21,11 +22,16 @@ export class UsersService {
   }
 
   findOne(_id: string) {
-    const test = this.ordersService.send('find_orders_by_userid', {
-      _id,
-    });
-    console.log(test);
-    return this.usersRepository.find({ _id });
+    return this.ordersService
+      .send('find_orders_by_userid', {
+        _id,
+      })
+      .pipe(
+        map((res) => {
+          console.log(res);
+          return this.usersRepository.find({ _id });
+        }),
+      );
   }
 
   update(_id: string, updateUserDto: UpdateUserDto) {
