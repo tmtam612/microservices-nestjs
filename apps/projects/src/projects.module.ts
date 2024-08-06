@@ -3,7 +3,10 @@ import { ProjectsService } from './projects.service';
 import { ProjectsController } from './projects.controller';
 import { DatabaseModule } from '@app/common/database/database.module';
 import { ProjectsRepository } from './projects.repository';
-import { ProjectDocument, ProjectSchema } from './models/project.schema';
+import {
+  ProjectDocument,
+  ProjectSchema,
+} from '@app/common/models/project.schema';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 @Module({

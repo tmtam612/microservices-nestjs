@@ -6,9 +6,9 @@ $ nest new microservices
 
 $ nest g library common
 
-$ nest g module config -p common
-
 $ nest g module database -p common
+
+$ nest g module models -p common
 
 $ nest g app projects
 
