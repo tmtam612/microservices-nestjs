@@ -27,9 +27,11 @@ export class UsersService {
         _id,
       })
       .pipe(
-        map((res) => {
-          console.log(res);
-          return this.usersRepository.find({ _id });
+        map(async (res) => {
+          const response = await this.usersRepository.findOne({ _id });
+          const respJson = JSON.parse(JSON.stringify(response));
+          respJson.orders = res;
+          return respJson;
         }),
       );
   }

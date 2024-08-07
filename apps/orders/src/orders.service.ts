@@ -21,8 +21,6 @@ export class OrdersService {
   }
 
   findByUserID(userID: string) {
-    console.log(111111);
-    console.log(this.ordersRepository.find({ userID: userID }));
     return this.ordersRepository.find({ userID: userID });
   }
 
